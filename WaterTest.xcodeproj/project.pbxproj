@@ -8,17 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		BDD9BFFC29D6CB2B00942501 /* WaterTestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD9BFFB29D6CB2B00942501 /* WaterTestApp.swift */; };
-		BDD9BFFE29D6CB2B00942501 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD9BFFD29D6CB2B00942501 /* ContentView.swift */; };
 		BDD9C00029D6CB2C00942501 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDD9BFFF29D6CB2C00942501 /* Assets.xcassets */; };
 		BDD9C00329D6CB2C00942501 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDD9C00229D6CB2C00942501 /* Preview Assets.xcassets */; };
+		BDD9C00C29D8BB0000942501 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD9C00B29D8BB0000942501 /* WelcomeView.swift */; };
+		BDD9C00E29D8C03B00942501 /* DataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD9C00D29D8C03B00942501 /* DataView.swift */; };
+		BDD9C01029D9522500942501 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD9C00F29D9522500942501 /* ResultView.swift */; };
+		BDFF870E29DAC58B008F610C /* ChooseDrinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFF870D29DAC58B008F610C /* ChooseDrinkView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		BDD9BFF829D6CB2B00942501 /* WaterTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaterTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDD9BFFB29D6CB2B00942501 /* WaterTestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterTestApp.swift; sourceTree = "<group>"; };
-		BDD9BFFD29D6CB2B00942501 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BDD9BFFF29D6CB2C00942501 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BDD9C00229D6CB2C00942501 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		BDD9C00B29D8BB0000942501 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		BDD9C00D29D8C03B00942501 /* DataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataView.swift; sourceTree = "<group>"; };
+		BDD9C00F29D9522500942501 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
+		BDFF870D29DAC58B008F610C /* ChooseDrinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseDrinkView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +58,10 @@
 			isa = PBXGroup;
 			children = (
 				BDD9BFFB29D6CB2B00942501 /* WaterTestApp.swift */,
-				BDD9BFFD29D6CB2B00942501 /* ContentView.swift */,
+				BDD9C00B29D8BB0000942501 /* WelcomeView.swift */,
+				BDD9C00D29D8C03B00942501 /* DataView.swift */,
+				BDD9C00F29D9522500942501 /* ResultView.swift */,
+				BDFF870D29DAC58B008F610C /* ChooseDrinkView.swift */,
 				BDD9BFFF29D6CB2C00942501 /* Assets.xcassets */,
 				BDD9C00129D6CB2C00942501 /* Preview Content */,
 			);
@@ -137,8 +146,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BDD9BFFE29D6CB2B00942501 /* ContentView.swift in Sources */,
+				BDFF870E29DAC58B008F610C /* ChooseDrinkView.swift in Sources */,
+				BDD9C00E29D8C03B00942501 /* DataView.swift in Sources */,
+				BDD9C01029D9522500942501 /* ResultView.swift in Sources */,
 				BDD9BFFC29D6CB2B00942501 /* WaterTestApp.swift in Sources */,
+				BDD9C00C29D8BB0000942501 /* WelcomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
