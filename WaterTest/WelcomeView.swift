@@ -9,7 +9,7 @@ import SwiftUI
 
 struct WelcomeView: View {
     var body: some View {
-        NavigationView{
+        NavigationStack{
             VStack(spacing: 22){
                 Image("welcome")
                     .resizable()
