@@ -46,7 +46,7 @@ struct ResultView: View {
                     .frame(width: 250)
                 Spacer()
                 NavigationLink{
-                    ChooseDrinkView()
+                    chooseTimeView()
                 }label: {
                     Text("Continue")
                         .font(.headline)
