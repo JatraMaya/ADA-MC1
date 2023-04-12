@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DrinkView: View {
     @State var currentWater = 0.0
-
+    
     var body: some View {
         NavigationStack{
             VStack{
@@ -18,7 +18,9 @@ struct DrinkView: View {
                 }label: {
                     Image(systemName: "gearshape.fill")
                 }.padding(.leading, 350).padding(.top, -80)
-                Text("Drink Input").fontWeight(.bold).font(.title)
+                Text("Drink Input")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
                 ZStack{
                     Image("glass-empty")
                         .resizable()
@@ -65,11 +67,11 @@ struct DrinkView: View {
                         .background(.white)
                         .cornerRadius(10)
                         .shadow(color: .gray, radius: 2, x: 2, y: 3)
-
+                    
                 }
             }
         }
-
+        
     }
 }
 

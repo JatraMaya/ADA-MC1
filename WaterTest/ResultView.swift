@@ -34,11 +34,14 @@ struct ResultView: View {
             result = "You Need to drink " + String(calc) + "ml Today!"
         }
     }
-
         var body: some View {
             VStack{
                 Spacer()
-                Text(result).onAppear(perform: calculate)
+                Text(result)
+                    .multilineTextAlignment(.center)
+                    .onAppear(perform: calculate)
+                    .font(.largeTitle)
+                        .fontWeight(.bold)
                 Spacer()
                 Image("result")
                     .resizable()
@@ -49,13 +52,12 @@ struct ResultView: View {
                     chooseTimeView(age: $age, weight: $weight)
                 }label: {
                     Text("Continue")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .frame(width:300, height: 40)
-                        .background(.blue)
-                        .cornerRadius(10)
+                        .frame(width: 320.0, height: 50.0)
+                        .background(Color.blue)
+                        .foregroundColor(Color.white)
+                        .cornerRadius(4)
                 }
-                Spacer()
+                .padding(24)
             }
         }
 

@@ -18,54 +18,54 @@ struct DataView: View {
         return name.isEmpty || age.isEmpty || weight.isEmpty
     }
 
+
     var body: some View {
-        VStack(spacing: 30){
-            Spacer()
+        VStack(spacing: 24){
+            VStack(spacing: 8){
+                Text("Input Data")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                Text("Lorem ipsum dolor sit amet,  consectetur adipiscingelit, sed do eiusmod tempor")
+                    .multilineTextAlignment(.center)
+                    .font(.system(size: 15))
+                .frame(width: 300)
+                
+            }
             Image("data-input")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 350)
-            Text("Lorem ipsum dolor sit amet,  consectetur adipiscingelit, sed do eiusmod tempor")
-                .multilineTextAlignment(.center)
-                .font(.system(size: 15))
-                .frame(width: 300)
+                .frame(width: 200)
+            
             Form{
                 HStack{
                     Text("Name").frame(width: 80, alignment: .leading)
                     TextField("Your Name", text: $name)
                 }
-                HStack{
-                    Text("Age").frame(width: 80, alignment: .leading)
-                    TextField("Your Age", text: $age).keyboardType(.numberPad)
-                }
+              
                 HStack{
                     Text("Weight").frame(width: 80, alignment: .leading)
-                    TextField("Your Weight in kg", text: $weight)
+                    TextField("Your Weight", text: $weight)
                         .textFieldStyle(SuffixTextFieldStyle(suffix: "Kg"))
                         .keyboardType(.numberPad)
                 }
-                HStack{
-                    Text("Gender").frame(width: 80, alignment: .leading)
-                    Picker(selection: $gender) {
-                        Text("Male").tag("Male")
-                        Text("Female").tag("Female")
-                    } label: {
-                    }.pickerStyle(.segmented)
-                }
+            
             }.scrollContentBackground(.hidden)
-                .padding(.top, -35)
+                .padding( -35)
+            
+            
+            
             NavigationLink {
                 ResultView(name: $name, age: $age, weight: $weight, gender: $gender)
             }label: {
                 Text("calculate".uppercased())
                     .font(disabledButton() ? .caption : .headline)
-                    .foregroundColor(disabledButton() ? .black : .white)
-                    .frame(width: 320.0, height: 40.0)
+                    .foregroundColor(disabledButton() ? .white : .white)
+                    .frame(width: 320.0, height: 50.0)
                     .background(disabledButton() ? .gray : .blue
                     )
-                    .cornerRadius(10)
+                    .cornerRadius(4)
             }.disabled(disabledButton())
-        }
+        }.padding(24)
     }
 }
 

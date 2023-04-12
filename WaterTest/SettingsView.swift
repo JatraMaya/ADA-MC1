@@ -15,12 +15,11 @@ struct SettingsView: View {
     
     var body: some View {
         Form{
-            Section(header: Text("General Settings").font(.headline).foregroundColor(.black)) {
                 HStack{
                     Text("Age").frame(width: 100, alignment: .leading)
                     TextField("", text: $age)
                 }
-            }
+            
             HStack{
                 Text("Weight").frame(width: 100, alignment: .leading)
                 TextField("", text: $weight).textFieldStyle(SuffixTextFieldStyle(suffix: "Kg"))
