@@ -9,10 +9,14 @@ import SwiftUI
 
 struct DataView: View {
     
-    @State var name = ""
-    @State var age = ""
-    @State var weight = ""
-    @State var gender = "Male"
+    @AppStorage("name") private var name = ""
+    @AppStorage("age") private var age = ""
+    @AppStorage("weight") private var weight = ""
+    @AppStorage("gender") private var gender = "Male"
+
+    func disabledButton() -> Bool {
+        return name.isEmpty || age.isEmpty || weight.isEmpty
+    }
 
     var body: some View {
         VStack(spacing: 30){
@@ -32,11 +36,13 @@ struct DataView: View {
                 }
                 HStack{
                     Text("Age").frame(width: 80, alignment: .leading)
-                    TextField("Your Name", text: $age.max(3)).keyboardType(.numberPad)
+                    TextField("Your Age", text: $age).keyboardType(.numberPad)
                 }
                 HStack{
                     Text("Weight").frame(width: 80, alignment: .leading)
-                    TextField("Your Weight", text: $weight.max(3)).keyboardType(.numberPad)
+                    TextField("Your Weight in kg", text: $weight)
+                        .textFieldStyle(SuffixTextFieldStyle(suffix: "Kg"))
+                        .keyboardType(.numberPad)
                 }
                 HStack{
                     Text("Gender").frame(width: 80, alignment: .leading)
@@ -51,32 +57,31 @@ struct DataView: View {
             NavigationLink {
                 ResultView(name: $name, age: $age, weight: $weight, gender: $gender)
             }label: {
-                Text("start".capitalized)
-                    .font(.headline)
-                    .foregroundColor(.white)
+                Text("calculate".uppercased())
+                    .font(disabledButton() ? .caption : .headline)
+                    .foregroundColor(disabledButton() ? .black : .white)
                     .frame(width: 320.0, height: 40.0)
-                    .background(.blue
+                    .background(disabledButton() ? .gray : .blue
                     )
                     .cornerRadius(10)
-            }.disabled(name.isEmpty || age.isEmpty || weight.isEmpty || gender.isEmpty)
+            }.disabled(disabledButton())
         }
     }
 }
 
+//extension Binding where Value == String {
+//    func max(_ limit: Int) -> Self {
+//        if self.wrappedValue.count > limit {
+//            DispatchQueue.main.async {
+//                self.wrappedValue = String(self.wrappedValue.dropLast())
+//            }
+//        }
+//        return self
+//    }
+//}
 
 
 
-
-extension Binding where Value == String {
-    func max(_ limit: Int) -> Self {
-        if self.wrappedValue.count > limit {
-            DispatchQueue.main.async {
-                self.wrappedValue = String(self.wrappedValue.dropLast())
-            }
-        }
-        return self
-    }
-}
 
 
 struct DataView_Previews: PreviewProvider {

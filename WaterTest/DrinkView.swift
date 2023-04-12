@@ -8,29 +8,34 @@
 import SwiftUI
 
 struct DrinkView: View {
-    @State var currentWater: Double = 0.0
+    @State var currentWater = 0.0
+
     var body: some View {
         NavigationStack{
             VStack{
                 NavigationLink {
-                    TestView()
+                    SettingsView()
                 }label: {
                     Image(systemName: "gearshape.fill")
                 }.padding(.leading, 350).padding(.top, -80)
-
-
                 Text("Drink Input").fontWeight(.bold).font(.title)
                 ZStack{
                     Image("glass-empty")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 250)
-                    Image("water")
-                        .resizable()
-                        .scaledToFit()
-                        .scaleEffect(x: 1, y: currentWater, anchor: .bottom)
-                        .frame(width: 219).padding(.top, 210)
-
+                    if currentWater >= 2 {
+                        Image("water-full")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 219).padding(.top, -45)
+                    }else {
+                        Image("water")
+                            .resizable()
+                            .scaledToFit()
+                            .scaleEffect(x: 1, y: currentWater, anchor: .bottom)
+                            .frame(width: 219).padding(.top, 210)
+                    }
                     Image("reflection")
                         .resizable()
                         .scaledToFit()
@@ -45,17 +50,15 @@ struct DrinkView: View {
                 }.fontWeight(.bold)
                 HStack {
                     Button("Drink"){
-                            currentWater += 0.1
-
+                        withAnimation{
+                            currentWater += 0.1}
                     }.frame(width: 200, height: 45)
-                    .foregroundColor(.white)
+                        .foregroundColor(.white)
                         .background(.blue)
                         .cornerRadius(10)
-
                     Button{
-
-                            currentWater = 0.0
-
+                        withAnimation{
+                            currentWater -= 0.1}
                     }label: {
                         Image(systemName: "arrowshape.turn.up.left")
                     }.frame(width:100, height: 45)

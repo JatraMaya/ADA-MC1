@@ -15,3 +15,20 @@ struct WaterTestApp: App {
         }
     }
 }
+
+
+// Utils Struct 
+struct SuffixTextFieldStyle: TextFieldStyle {
+    var suffix: String
+
+    func _body(configuration: TextField<Self._Label>) -> some View {
+        HStack {
+            configuration
+                .padding(.trailing, 30) // add some padding to make room for the suffix
+            Text(suffix)
+                .font(.subheadline)
+                .foregroundColor(.gray)
+        }
+        .frame(height: 44) // adjust the height as needed
+    }
+}

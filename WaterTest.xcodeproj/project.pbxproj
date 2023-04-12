@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		BD297D9E29E40D12008B9573 /* chooseTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD297D9D29E40D12008B9573 /* chooseTimeView.swift */; };
 		BD989E3629E5318D00A9BFA2 /* DrinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD989E3529E5318D00A9BFA2 /* DrinkView.swift */; };
-		BD989E3829E545DC00A9BFA2 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD989E3729E545DC00A9BFA2 /* TestView.swift */; };
+		BD989E3829E545DC00A9BFA2 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD989E3729E545DC00A9BFA2 /* SettingsView.swift */; };
 		BDD9BFFC29D6CB2B00942501 /* WaterTestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD9BFFB29D6CB2B00942501 /* WaterTestApp.swift */; };
 		BDD9C00029D6CB2C00942501 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDD9BFFF29D6CB2C00942501 /* Assets.xcassets */; };
 		BDD9C00329D6CB2C00942501 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDD9C00229D6CB2C00942501 /* Preview Assets.xcassets */; };
@@ -21,7 +21,7 @@
 /* Begin PBXFileReference section */
 		BD297D9D29E40D12008B9573 /* chooseTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chooseTimeView.swift; sourceTree = "<group>"; };
 		BD989E3529E5318D00A9BFA2 /* DrinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkView.swift; sourceTree = "<group>"; };
-		BD989E3729E545DC00A9BFA2 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		BD989E3729E545DC00A9BFA2 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		BDD9BFF829D6CB2B00942501 /* WaterTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaterTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDD9BFFB29D6CB2B00942501 /* WaterTestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterTestApp.swift; sourceTree = "<group>"; };
 		BDD9BFFF29D6CB2C00942501 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -67,7 +67,7 @@
 				BDD9C00F29D9522500942501 /* ResultView.swift */,
 				BD297D9D29E40D12008B9573 /* chooseTimeView.swift */,
 				BD989E3529E5318D00A9BFA2 /* DrinkView.swift */,
-				BD989E3729E545DC00A9BFA2 /* TestView.swift */,
+				BD989E3729E545DC00A9BFA2 /* SettingsView.swift */,
 				BDD9BFFF29D6CB2C00942501 /* Assets.xcassets */,
 				BDD9C00129D6CB2C00942501 /* Preview Content */,
 			);
@@ -152,7 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BD989E3829E545DC00A9BFA2 /* TestView.swift in Sources */,
+				BD989E3829E545DC00A9BFA2 /* SettingsView.swift in Sources */,
 				BDD9C00E29D8C03B00942501 /* DataView.swift in Sources */,
 				BD297D9E29E40D12008B9573 /* chooseTimeView.swift in Sources */,
 				BDD9C01029D9522500942501 /* ResultView.swift in Sources */,

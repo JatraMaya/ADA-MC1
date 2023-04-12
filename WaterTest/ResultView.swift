@@ -46,7 +46,7 @@ struct ResultView: View {
                     .frame(width: 250)
                 Spacer()
                 NavigationLink{
-                    chooseTimeView()
+                    chooseTimeView(age: $age, weight: $weight)
                 }label: {
                     Text("Continue")
                         .font(.headline)

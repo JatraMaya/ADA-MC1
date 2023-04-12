@@ -11,6 +11,10 @@ struct chooseTimeView: View {
     @State var startTime = Date.now
     let volumeWater: [String] = ["200", "250", "300", "350", "400", "450", "500", "550", "600"]
     @State var volumeWaterChoosed = "200"
+
+    @Binding var age: String
+    @Binding var weight: String
+
     var body: some View {
         VStack{
             Image("time").resizable().scaledToFit().frame(width:200)
@@ -37,12 +41,17 @@ struct chooseTimeView: View {
                     }
                 }
             }
+            NavigationLink{
+                DrinkView()
+            }label: {
+                Text("Test")
+            }
         }
     }
 }
 
 struct chooseTimeView_Previews: PreviewProvider {
     static var previews: some View {
-        chooseTimeView()
+        chooseTimeView(age: .constant("test"), weight: .constant("45"))
     }
 }
