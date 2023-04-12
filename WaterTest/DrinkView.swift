@@ -17,7 +17,9 @@ struct DrinkView: View {
                     SettingsView()
                 }label: {
                     Image(systemName: "gearshape.fill")
-                }.padding(.leading, 350).padding(.top, -80)
+                    .font(.system(size: 24))
+                }
+                .padding(.leading, 300)
                 Text("Drink Input")
                     .font(.largeTitle)
                     .fontWeight(.bold)
@@ -49,15 +51,17 @@ struct DrinkView: View {
                     Text(String(format: "%d", currentWater))
                     Text("/")
                     Text("2000ml")
-                }.fontWeight(.bold)
+                }
+                .font(.largeTitle)
+                .fontWeight(.bold)
                 HStack {
                     Button("Drink"){
                         withAnimation{
                             currentWater += 0.1}
-                    }.frame(width: 200, height: 45)
+                    }.frame(width: 200, height: 50)
                         .foregroundColor(.white)
                         .background(.blue)
-                        .cornerRadius(10)
+                        .cornerRadius(4)
                     Button{
                         withAnimation{
                             currentWater -= 0.1}
