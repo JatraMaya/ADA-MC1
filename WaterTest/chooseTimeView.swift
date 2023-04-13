@@ -41,9 +41,11 @@ struct chooseTimeView: View {
                         Text("Start Time")
                         DatePicker("", selection: $startTime, displayedComponents: .hourAndMinute)
                         
+                        
                     }
                     HStack{
                         Text("Interval")
+                            
                     }
                     
                 }.scrollContentBackground(.hidden)

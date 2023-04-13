@@ -44,6 +44,7 @@ struct DataView: View {
                     TextField("Your Weight", text: $weight)
                         .textFieldStyle(SuffixTextFieldStyle(suffix: "Kg"))
                         .keyboardType(.numberPad)
+                       
                 }
             }.scrollContentBackground(.hidden)
                 .padding( -35)

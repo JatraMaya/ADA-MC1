@@ -26,6 +26,7 @@ struct DrinkView: View {
                 }label: {
                     Image(systemName: "gearshape.fill")
                 }.padding(.leading, 350)
+                    .font(.system(size: 24))
                 Text("Drink Input")
                     .font(.title2)
                     .fontWeight(.bold)
@@ -66,7 +67,7 @@ struct DrinkView: View {
                     }.frame(width: 200, height: 45)
                         .foregroundColor(.white)
                         .background(.blue)
-                        .cornerRadius(10)
+                        .cornerRadius(4)
                     Button{
                         withAnimation{
                             currentWater -= (Double(volumeWaterChoosed) / result) * fixedValue
