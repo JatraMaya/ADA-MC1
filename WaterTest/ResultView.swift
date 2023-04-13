@@ -8,36 +8,28 @@
 import SwiftUI
 
 struct ResultView: View {
-    @Binding var name:String
-    @Binding var age: String
-    @Binding var weight: String
-    @Binding var gender: String
+//    @AppStorage("name") var name:String
+    @AppStorage("weight") var weight: String = ""
 
-    @State var result = ""
+//    @State private var result = ""
+    @AppStorage("result") var result = 0.0
 
     func calculate() {
 
-        var calc = 0.0
+        let weightInt = Int(weight) ?? 0
 
-        if gender.lowercased() == "male" {
-            if Int(age)! >= 19 {
-
-                calc = 2.447 
-//                calc = (Double(weight)! * 0.033) + 500
-                result = "You Need to drink " + String(calc) + "ml Today!"
-            } else {
-                calc = (Double(weight) ?? 0 * 0.033) + 500
-                result = "You Need to drink " + String(calc) + "ml Today!"
-            }
-        } else {
-            calc = Double(weight) ?? 0 * 0.033
-            result = "You Need to drink " + String(calc) + "ml Today!"
+        if weightInt <= 10 {
+            result = Double(weightInt) * 100
+        }else if weightInt <= 20 {
+            result = (1000 + Double(weightInt) * 50)
+        }else {
+            result = 1500 + Double(weightInt) * 20
         }
     }
         var body: some View {
             VStack{
                 Spacer()
-                Text(result)
+                Text("You need to drink \(Int(result))ml today!")
                     .multilineTextAlignment(.center)
                     .onAppear(perform: calculate)
                     .font(.largeTitle)
@@ -49,7 +41,7 @@ struct ResultView: View {
                     .frame(width: 250)
                 Spacer()
                 NavigationLink{
-                    chooseTimeView(age: $age, weight: $weight)
+                    chooseTimeView()
                 }label: {
                     Text("Continue")
                         .frame(width: 320.0, height: 50.0)
@@ -67,7 +59,7 @@ struct ResultView: View {
 
         static var previews: some View {
 
-            ResultView(name: .constant("test"), age: .constant("test"), weight: .constant("test"), gender: .constant("test"))
+            ResultView()
         }
     }
 

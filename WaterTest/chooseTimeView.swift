@@ -9,11 +9,8 @@ import SwiftUI
 
 struct chooseTimeView: View {
     @State var startTime = Date.now
-    let volumeWater: [String] = ["200", "250", "300", "350", "400", "450", "500", "550", "600"]
-    @State var volumeWaterChoosed = "200"
-    
-    @Binding var age: String
-    @Binding var weight: String
+    let volumeWater: [Int] = [200, 250, 300, 350, 400, 450, 500, 550, 600]
+    @AppStorage("volumeWaterChoosed") var volumeWaterChoosed = 200
     
     var body: some View {
         VStack(spacing: 24){
@@ -36,7 +33,7 @@ struct chooseTimeView: View {
                         Text("Water Volume")
                         Picker("", selection: $volumeWaterChoosed) {
                             ForEach (volumeWater, id: \.self) {
-                                Text($0)
+                                Text("\($0)").tag($0)
                             }
                         }
                     }
@@ -70,6 +67,6 @@ struct chooseTimeView: View {
 
 struct chooseTimeView_Previews: PreviewProvider {
     static var previews: some View {
-        chooseTimeView(age: .constant("test"), weight: .constant("45"))
+        chooseTimeView()
     }
 }

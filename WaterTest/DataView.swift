@@ -10,12 +10,10 @@ import SwiftUI
 struct DataView: View {
     
     @AppStorage("name") private var name = ""
-    @AppStorage("age") private var age = ""
     @AppStorage("weight") private var weight = ""
-    @AppStorage("gender") private var gender = "Male"
 
     func disabledButton() -> Bool {
-        return name.isEmpty || age.isEmpty || weight.isEmpty
+        return name.isEmpty || weight.isEmpty
     }
 
 
@@ -41,21 +39,19 @@ struct DataView: View {
                     Text("Name").frame(width: 80, alignment: .leading)
                     TextField("Your Name", text: $name)
                 }
-              
                 HStack{
                     Text("Weight").frame(width: 80, alignment: .leading)
                     TextField("Your Weight", text: $weight)
                         .textFieldStyle(SuffixTextFieldStyle(suffix: "Kg"))
                         .keyboardType(.numberPad)
                 }
-            
             }.scrollContentBackground(.hidden)
                 .padding( -35)
             
             
             
             NavigationLink {
-                ResultView(name: $name, age: $age, weight: $weight, gender: $gender)
+                ResultView()
             }label: {
                 Text("calculate".uppercased())
                     .font(disabledButton() ? .caption : .headline)

@@ -9,6 +9,14 @@ import SwiftUI
 
 struct DrinkView: View {
     @State var currentWater = 0.0
+    @State var target:Int = 0
+    @AppStorage("weight") var weight: String = ""
+    @AppStorage("volumeWaterChoosed") var volumeWaterChoosed = 200
+    @AppStorage("result") var result = 0.0
+    let fixedValue = 2.6
+
+    @State var drinkTarget = 0 
+    let drink = 600
     
     var body: some View {
         NavigationStack{
@@ -17,16 +25,16 @@ struct DrinkView: View {
                     SettingsView()
                 }label: {
                     Image(systemName: "gearshape.fill")
-                }.padding(.leading, 350).padding(.top, -80)
+                }.padding(.leading, 350)
                 Text("Drink Input")
-                    .font(.largeTitle)
+                    .font(.title2)
                     .fontWeight(.bold)
                 ZStack{
                     Image("glass-empty")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 250)
-                    if currentWater >= 2 {
+                    if currentWater >= fixedValue {
                         Image("water-full")
                             .resizable()
                             .scaledToFit()
@@ -46,29 +54,30 @@ struct DrinkView: View {
                         .padding(.top, -180)
                 }
                 HStack{
-                    Text(String(format: "%d", currentWater))
-                    Text("/")
-                    Text("2000ml")
-                }.fontWeight(.bold)
+                    Text("\(Int(max(target, 0)))/\(Int(result))ml")
+                }.font(.title)
+                .fontWeight(.bold)
                 HStack {
-                    Button("Drink"){
+                    Button("+\(volumeWaterChoosed)"){
                         withAnimation{
-                            currentWater += 0.1}
+                            currentWater += (Double(volumeWaterChoosed) / result) * fixedValue
+                            target += volumeWaterChoosed
+                        }
                     }.frame(width: 200, height: 45)
                         .foregroundColor(.white)
                         .background(.blue)
                         .cornerRadius(10)
                     Button{
                         withAnimation{
-                            currentWater -= 0.1}
+                            currentWater -= (Double(volumeWaterChoosed) / result) * fixedValue
+                            target -= volumeWaterChoosed}
                     }label: {
                         Image(systemName: "arrowshape.turn.up.left")
                     }.frame(width:100, height: 45)
                         .background(.white)
                         .cornerRadius(10)
-                        .shadow(color: .gray, radius: 2, x: 2, y: 3)
-                    
-                }
+                        .shadow(color: .gray, radius: 2, x: 2, y: 3).disabled(target == 0)
+                }.padding(.top, 30)
             }
         }
         

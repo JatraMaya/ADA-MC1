@@ -12,9 +12,9 @@ struct WaterTestApp: App {
     var body: some Scene {
         WindowGroup {
             WelcomeView()
+            }
         }
     }
-}
 
 
 // Utils Struct 
