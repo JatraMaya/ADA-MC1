@@ -6,17 +6,47 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 struct DrinkView: View {
-    @State var currentWater = 0.0
-    @State var target:Int = 0
+    @AppStorage("currentWater") var currentWater = 0.0
+    @AppStorage("target") var target:Int = 0
     @AppStorage("weight") var weight: String = ""
     @AppStorage("volumeWaterChoosed") var volumeWaterChoosed = 200
     @AppStorage("result") var result = 0.0
+
     let fixedValue = 2.6
 
-    @State var drinkTarget = 0 
+    @State var drinkTarget = 0
     let drink = 600
+
+    // Generate basic haptic object
+    let generator = UINotificationFeedbackGenerator()
+
+    func drinkAction() {
+
+        withAnimation{
+            currentWater += (Double(volumeWaterChoosed) / result) * fixedValue
+            target += volumeWaterChoosed}
+        generator.notificationOccurred(.success)
+
+    }
+
+    func undoDrinkAction() {
+
+        let x =  (Double(volumeWaterChoosed) / result) * fixedValue
+        
+        withAnimation{
+            if (currentWater - x ) >= 0.0{
+                currentWater -= x
+                target = target - volumeWaterChoosed
+            }else{
+                currentWater = 0.0
+                target = 0
+            }
+        }
+        generator.notificationOccurred(.success)
+    }
     
     var body: some View {
         NavigationStack{
@@ -25,8 +55,9 @@ struct DrinkView: View {
                     SettingsView()
                 }label: {
                     Image(systemName: "gearshape.fill")
-                }.padding(.leading, 350)
-                    .font(.system(size: 24))
+                        .padding(.leading, 350)
+                            .font(.system(size: 24))
+                }
                 Text("Drink Input")
                     .font(.title2)
                     .fontWeight(.bold)
@@ -41,11 +72,11 @@ struct DrinkView: View {
                             .scaledToFit()
                             .frame(width: 219).padding(.top, -45)
                     }else {
-                        Image("water")
-                            .resizable()
-                            .scaledToFit()
-                            .scaleEffect(x: 1, y: currentWater, anchor: .bottom)
-                            .frame(width: 219).padding(.top, 210)
+                            Image("water")
+                                .resizable()
+                                .scaledToFit()
+                                .scaleEffect(x: 1, y: currentWater, anchor: .bottom)
+                                .frame(width: 219).padding(.top, 210)
                     }
                     Image("reflection")
                         .resizable()
@@ -55,29 +86,35 @@ struct DrinkView: View {
                         .padding(.top, -180)
                 }
                 HStack{
-                    Text("\(Int(max(target, 0)))/\(Int(result))ml")
+                    Text("\(Int(target))/\(Int(result))ml")
                 }.font(.title)
-                .fontWeight(.bold)
+                    .fontWeight(.bold)
                 HStack {
-                    Button("+\(volumeWaterChoosed)"){
-                        withAnimation{
-                            currentWater += (Double(volumeWaterChoosed) / result) * fixedValue
-                            target += volumeWaterChoosed
-                        }
-                    }.frame(width: 200, height: 45)
-                        .foregroundColor(.white)
-                        .background(.blue)
-                        .cornerRadius(4)
                     Button{
-                        withAnimation{
-                            currentWater -= (Double(volumeWaterChoosed) / result) * fixedValue
-                            target -= volumeWaterChoosed}
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                            drinkAction()
+                        }
+                    }label: {
+                        Text("+ \(volumeWaterChoosed)")
+                            .fontWeight(.bold)
+                            .frame(width: 200, height: 45)
+                            .foregroundColor(.white)
+                            .background(.blue)
+                            .cornerRadius(4)
+                    }
+
+                    Button{
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                            undoDrinkAction()
+                        }
                     }label: {
                         Image(systemName: "arrowshape.turn.up.left")
-                    }.frame(width:100, height: 45)
-                        .background(.white)
-                        .cornerRadius(10)
-                        .shadow(color: .gray, radius: 2, x: 2, y: 3).disabled(target == 0)
+                            .frame(width:100, height: 45)
+                            .background(.white)
+                            .foregroundColor((target <= 0) ? .black : .blue)
+                            .cornerRadius(10)
+                            .shadow(color: .gray, radius: 2, x: 2, y: 3)
+                    }.disabled(target <= 0)
                 }.padding(.top, 30)
             }
         }

@@ -11,6 +11,7 @@ import SwiftUI
 struct WaterTestApp: App {
     var body: some Scene {
         WindowGroup {
+//            TestHaptic()
             WelcomeView()
             }
         }
@@ -32,3 +33,5 @@ struct SuffixTextFieldStyle: TextFieldStyle {
         .frame(height: 44) // adjust the height as needed
     }
 }
+
+
