@@ -61,7 +61,7 @@ struct chooseTimeView: View {
                 .scrollContentBackground(.hidden)
             }
             NavigationLink{
-                DrinkView()
+                DrinkView().navigationBarBackButtonHidden(true)
             }label: {
                 Text("Start".capitalized)
                     .padding()
@@ -89,12 +89,4 @@ struct chooseTimeView_Previews: PreviewProvider {
     static var previews: some View {
         chooseTimeView()
     }
-}
-
-extension chooseTimeView {
-    
-   
-
-
-    
 }
