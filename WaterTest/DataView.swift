@@ -15,25 +15,19 @@ struct DataView: View {
     func disabledButton() -> Bool {
         return name.isEmpty || weight.isEmpty
     }
-
-
     var body: some View {
         VStack(spacing: 24){
-            VStack(spacing: 8){
-                Text("Input Data")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                Text("Lorem ipsum dolor sit amet,  consectetur adipiscingelit, sed do eiusmod tempor")
-                    .multilineTextAlignment(.center)
-                    .font(.system(size: 15))
-                .frame(width: 300)
-                
-            }
+            Spacer()
+            Spacer()
             Image("data-input")
                 .resizable()
                 .scaledToFit()
                 .frame(width: 200)
-            
+            Text("First, we need to calculate your daily water intake goal based on your weight. Don't worry, this will only takes a minute!")
+                .multilineTextAlignment(.center)
+                .font(.system(size: 15))
+                .frame(width: 300)
+            Spacer()
             Form{
                 HStack{
                     Text("Name").frame(width: 80, alignment: .leading)
@@ -44,13 +38,9 @@ struct DataView: View {
                     TextField("Your Weight", text: $weight)
                         .textFieldStyle(SuffixTextFieldStyle(suffix: "Kg"))
                         .keyboardType(.numberPad)
-                       
                 }
             }.scrollContentBackground(.hidden)
                 .padding( -35)
-            
-            
-            
             NavigationLink {
                 ResultView()
             }label: {
@@ -60,25 +50,11 @@ struct DataView: View {
                     .frame(width: 320.0, height: 50.0)
                     .background(disabledButton() ? .gray : .blue
                     )
-                    .cornerRadius(4)
+                    .cornerRadius(10)
             }.disabled(disabledButton())
         }.padding(24)
     }
 }
-
-//extension Binding where Value == String {
-//    func max(_ limit: Int) -> Self {
-//        if self.wrappedValue.count > limit {
-//            DispatchQueue.main.async {
-//                self.wrappedValue = String(self.wrappedValue.dropLast())
-//            }
-//        }
-//        return self
-//    }
-//}
-
-
-
 
 
 struct DataView_Previews: PreviewProvider {

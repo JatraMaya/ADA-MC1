@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import UserNotifications
 
 struct DrinkView: View {
     @AppStorage("currentWater") var currentWater = 0.0
@@ -29,7 +28,6 @@ struct DrinkView: View {
             currentWater += (Double(volumeWaterChoosed) / result) * fixedValue
             target += volumeWaterChoosed}
         generator.notificationOccurred(.success)
-
     }
 
     func undoDrinkAction() {
@@ -56,7 +54,7 @@ struct DrinkView: View {
                 }label: {
                     Image(systemName: "gearshape.fill")
                         .padding(.leading, 350)
-                            .font(.system(size: 24))
+                        .font(.system(size: 24))
                 }
                 Text("Drink Input")
                     .font(.title2)
@@ -72,11 +70,11 @@ struct DrinkView: View {
                             .scaledToFit()
                             .frame(width: 219).padding(.top, -45)
                     }else {
-                            Image("water")
-                                .resizable()
-                                .scaledToFit()
-                                .scaleEffect(x: 1, y: currentWater, anchor: .bottom)
-                                .frame(width: 219).padding(.top, 210)
+                        Image("water")
+                            .resizable()
+                            .scaledToFit()
+                            .scaleEffect(x: 1, y: currentWater, anchor: .bottom)
+                            .frame(width: 219).padding(.top, 210)
                     }
                     Image("reflection")
                         .resizable()
@@ -102,7 +100,6 @@ struct DrinkView: View {
                             .background(.blue)
                             .cornerRadius(4)
                     }
-
                     Button{
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
                             undoDrinkAction()
@@ -117,6 +114,32 @@ struct DrinkView: View {
                     }.disabled(target <= 0)
                 }.padding(.top, 30)
             }
+//            VStack{
+//                Button("Schedule Notification") {
+//                    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+//                        if success {
+//                            print("All set!")
+//                        } else if let error = error {
+//                            print(error.localizedDescription)
+//                        }
+//                    }
+//                }
+//                Button("Schedule Notification") {
+//                    let content = UNMutableNotificationContent()
+//                    content.title = "Feed the cat"
+//                    content.subtitle = "It looks hungry"
+//                    content.sound = UNNotificationSound.default
+//
+//                    // show this notification five seconds from now
+//                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+//
+//                    // choose a random identifier
+//                    let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+//
+//                    // add our notification request
+//                    UNUserNotificationCenter.current().add(request)
+//                }
+//            }
         }
         
     }

@@ -6,16 +6,16 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 @main
 struct WaterTestApp: App {
     var body: some Scene {
         WindowGroup {
-//            TestHaptic()
             WelcomeView()
-            }
         }
     }
+}
 
 
 // Utils Struct 

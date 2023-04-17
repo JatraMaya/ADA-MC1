@@ -19,20 +19,22 @@ struct WelcomeView: View {
                     Text("Welcome!")
                         .font(.largeTitle)
                         .fontWeight(.bold)
-                    Text("Lorem ipsum dolor sit amet,  consectetur adipiscingelit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+                    Text("Welcome to Hybit, your personal water tracker! Let's get started by setting up your account.")
                         .font(.body)
                         .multilineTextAlignment(.center)
-                        .frame(maxWidth: 300)
+                        .frame(maxWidth: 360)
+                        .padding(.bottom, 50)
                 }
                 NavigationLink {
                     DataView()
                 }label: {
                     Text("Start".capitalized)
+                        .font(.headline)
                         .padding()
-                        .frame(width: /*@START_MENU_TOKEN@*/200.0/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/50.0/*@END_MENU_TOKEN@*/)
+                        .frame(width: 150, height: /*@START_MENU_TOKEN@*/50.0/*@END_MENU_TOKEN@*/)
                         .background(Color.blue)
                         .foregroundColor(Color.white)
-                        .cornerRadius(4)
+                        .cornerRadius(10)
                     
                     
                 }
