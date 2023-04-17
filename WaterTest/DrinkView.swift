@@ -13,7 +13,9 @@ struct DrinkView: View {
     @AppStorage("weight") var weight: String = ""
     @AppStorage("volumeWaterChoosed") var volumeWaterChoosed = 200
     @AppStorage("result") var result = 0.0
-    @Binding var intervalChoosed: Int
+    @AppStorage("intervalChoosed") var intervalChoosed = 30
+    @Binding var startTime: Date
+    @State var targetAchieved: Bool = false
 
     let fixedValue = 2.6
 
@@ -26,9 +28,16 @@ struct DrinkView: View {
     func drinkAction() {
 
         withAnimation{
+
             currentWater += (Double(volumeWaterChoosed) / result) * fixedValue
             target += volumeWaterChoosed}
         generator.notificationOccurred(.success)
+
+        if Int(target) == Int(result) {
+            targetAchieved = true
+        }
+
+
     }
 
     func undoDrinkAction() {
@@ -51,7 +60,7 @@ struct DrinkView: View {
         NavigationStack{
             VStack{
                 NavigationLink {
-                    SettingsView()
+                    SettingsView(startTime: $startTime)
                 }label: {
                     Image(systemName: "gearshape.fill")
                         .padding(.leading, 350)
@@ -114,6 +123,8 @@ struct DrinkView: View {
                             .shadow(color: .gray, radius: 2, x: 2, y: 3)
                     }.disabled(target <= 0)
                 }.padding(.top, 30)
+            }.alert(isPresented: $targetAchieved) { () -> Alert in
+                Alert(title: Text("Congratulation!"), message: Text("You've completed today's water intake target"), dismissButton: .default(Text("Done")))
             }
             .onAppear{
                 IntervalSetup()
@@ -125,16 +136,18 @@ struct DrinkView: View {
 
 struct DrinkView_Previews: PreviewProvider {
     static var previews: some View {
-        DrinkView(intervalChoosed: .constant(1))
+        DrinkView(startTime: .constant(Date.now))
     }
 }
 
 extension DrinkView {
 
+    // function to convert minutes interval to second unit
     func getIntervalInSeconds() -> Int {
         return intervalChoosed * 60
     }
 
+    // function to setup notification
     func IntervalSetup() {
 
         let intervalChoosedDouble = Double(getIntervalInSeconds())
@@ -149,7 +162,10 @@ extension DrinkView {
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
 
         // add our notification request
-        UNUserNotificationCenter.current().add(request)
+        // if the startTime value equal to the time NOW
+        if startTime == .now {
+            UNUserNotificationCenter.current().add(request)
+        }
 
     }
 }

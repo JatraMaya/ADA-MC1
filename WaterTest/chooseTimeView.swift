@@ -11,8 +11,8 @@ import UserNotifications
 struct chooseTimeView: View {
     @State var startTime = Date.now
     let volumeWater: [Int] = [200, 250, 300, 350, 400, 450, 500, 550, 600]
-    @State var volumeWaterChoosed = 200
-    @State var intervalChoosed = 30
+    @AppStorage("volumeWaterChoosed") var volumeWaterChoosed = 200
+    @AppStorage("intervalChoosed") var intervalChoosed = 30
     let timeIntervalList: [Int] = [30, 45, 60, 75, 90, 105, 120]
 
     @AppStorage("intervalReminder") var intervalReminder = 0
@@ -49,7 +49,8 @@ struct chooseTimeView: View {
                             Text("Interval")
                             Picker("", selection: $intervalChoosed) {
                                 ForEach(timeIntervalList, id: \.self) {
-                                    Text("\($0) minutes").tag($0)                            }
+                                    Text("\($0) minutes").tag($0)
+                                }
                             }
                         }
                     }
@@ -57,7 +58,7 @@ struct chooseTimeView: View {
                 .scrollContentBackground(.hidden)
             }
             NavigationLink{
-                DrinkView(intervalChoosed: $intervalChoosed)
+                DrinkView(startTime: $startTime)
             }label: {
                 Text("Start".capitalized)
                     .padding()
