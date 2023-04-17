@@ -9,9 +9,14 @@ import SwiftUI
 
  @main
 struct WaterTestApp: App {
+    @AppStorage("setupIsDone") var setupIsDone: Bool = false
     var body: some Scene {
         WindowGroup {
+            if !setupIsDone{
                 WelcomeView()
+            }else{
+                DrinkView()
+            }
         }
     }
 }

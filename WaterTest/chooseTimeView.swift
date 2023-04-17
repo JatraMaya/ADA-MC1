@@ -61,7 +61,7 @@ struct chooseTimeView: View {
                 .scrollContentBackground(.hidden)
             }
             NavigationLink{
-                DrinkView(startTime: $startTime)
+                DrinkView()
             }label: {
                 Text("Start".capitalized)
                     .padding()

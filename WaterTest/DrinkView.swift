@@ -16,8 +16,14 @@ struct DrinkView: View {
     @AppStorage("volumeWaterChoosed") var volumeWaterChoosed = 200
     @AppStorage("result") var result = 0.0
     @AppStorage("intervalChoosed") var intervalChoosed = 30
-    @Binding var startTime: Date
+    @State var startTime: Date = Date.now
     @State var targetAchieved: Bool = false
+    @State var showSetting: Bool = false
+    @AppStorage("setupIsDone") var setupIsDone: Bool = false
+
+    //Test value
+    let volumeWater: [Int] = [200, 250, 300, 350, 400, 450, 500, 550, 600]
+    let timeIntervalList: [Int] = [30, 45, 60, 75, 90, 105, 120]
 
     let fixedValue = 2.6
 
@@ -64,10 +70,10 @@ struct DrinkView: View {
     }
     
     var body: some View {
-        NavigationStack{
+
             VStack{
-                NavigationLink {
-                    SettingsView(startTime: $startTime)
+                Button{
+                    showSetting.toggle()
                 }label: {
                     Image(systemName: "gearshape.fill")
                         .padding(.leading, 350)
@@ -130,20 +136,58 @@ struct DrinkView: View {
                             .shadow(color: .gray, radius: 2, x: 2, y: 3)
                     }.disabled(target <= 0)
                 }.padding(.top, 30)
-            }.alert(isPresented: $targetAchieved) { () -> Alert in
+            }.sheet(isPresented: $showSetting, content: {
+                Form{
+                    Section(header: Text("General settings")){
+                        HStack{
+                            Text("Weight").frame(width: 100, alignment: .leading)
+                            TextField("", text: $weight).textFieldStyle(SuffixTextFieldStyle(suffix: "Kg"))
+                        }
+                    }
+                    Section(header:Text("Water intake per drink")){
+                        HStack{
+                            Text("Water Volume")
+                            Picker("", selection: $volumeWaterChoosed) {
+                                ForEach (volumeWater, id: \.self) {
+                                    Text("\($0) ml").tag($0)
+                                }
+                            }
+                        }
+                    }
+                    Section(header: Text("Time Settings")) {
+                        HStack{
+                                Text("Start Time")
+                            DatePicker("", selection: $startTime, displayedComponents: .hourAndMinute)
+
+                        }
+                        HStack{
+                            Text("Interval")
+                            Picker("", selection: $intervalChoosed) {
+                                ForEach(timeIntervalList, id: \.self) {
+                                    Text("\($0) minutes").tag($0)
+                                }
+                            }
+                        }
+                    }
+                }
+            })
+
+            .alert(isPresented: $targetAchieved) { () -> Alert in
                 Alert(title: Text("Congratulation \(name)!"), message: Text("You've completed today's water intake target"), dismissButton: .default(Text("Done")))
             }
             .onAppear{
+                setupIsDone = true
                 IntervalSetup()
             }
         }
         
-    }
+//    }
 }
 
 struct DrinkView_Previews: PreviewProvider {
     static var previews: some View {
-        DrinkView(startTime: .constant(Date.now))
+        DrinkView()
+//        DrinkView(startTime: .constant(Date.now))
     }
 }
 
@@ -181,3 +225,50 @@ extension DrinkView {
 
     }
 }
+
+//struct SettingsView: View {
+//    @AppStorage("name") private var name = ""
+//    @AppStorage("weight") private var weight = ""
+//    @AppStorage("volumeWaterChoosed") var volumeWaterChoosed = 200
+//    @AppStorage("intervalChoosed") var intervalChoosed = 30
+//    @Binding var startTime: Date
+//    let volumeWater: [Int] = [200, 250, 300, 350, 400, 450, 500, 550, 600]
+//    let timeIntervalList: [Int] = [30, 45, 60, 75, 90, 105, 120]
+//
+//    var body: some View {
+//        Form{
+//            Section(header: Text("General settings")){
+//                HStack{
+//                    Text("Weight").frame(width: 100, alignment: .leading)
+//                    TextField("", text: $weight).textFieldStyle(SuffixTextFieldStyle(suffix: "Kg"))
+//                }
+//            }
+//            Section(header:Text("Water intake per drink")){
+//                HStack{
+//                    Text("Water Volume")
+//                    Picker("", selection: $volumeWaterChoosed) {
+//                        ForEach (volumeWater, id: \.self) {
+//                            Text("\($0) ml").tag($0)
+//                        }
+//                    }
+//                }
+//            }
+//            Section(header: Text("Time Settings")) {
+//                HStack{
+//                        Text("Start Time")
+//                    DatePicker("", selection: $startTime, displayedComponents: .hourAndMinute)
+//
+//                }
+//                HStack{
+//                    Text("Interval")
+//                    Picker("", selection: $intervalChoosed) {
+//                        ForEach(timeIntervalList, id: \.self) {
+//                            Text("\($0) minutes").tag($0)
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+//}
+
