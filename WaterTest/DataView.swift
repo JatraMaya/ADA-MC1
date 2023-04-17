@@ -23,7 +23,7 @@ struct DataView: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: 200)
-            Text("First, we need to calculate your daily water intake goal based on your weight. Don't worry, this will only takes a minute!")
+            Text("First, we need to calculate your daily water intake goal based on your weight. Don't worry, this will only take less then a minute!")
                 .multilineTextAlignment(.center)
                 .font(.system(size: 15))
                 .frame(width: 300)

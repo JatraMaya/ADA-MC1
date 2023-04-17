@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct DrinkView: View {
+
+    @AppStorage("name") var name = ""
     @AppStorage("currentWater") var currentWater = 0.0
     @AppStorage("target") var target:Int = 0
     @AppStorage("weight") var weight: String = ""
@@ -27,17 +29,22 @@ struct DrinkView: View {
 
     func drinkAction() {
 
-        withAnimation{
+        let x =  (Double(volumeWaterChoosed) / result) * fixedValue
 
-            currentWater += (Double(volumeWaterChoosed) / result) * fixedValue
-            target += volumeWaterChoosed}
+        withAnimation{
+            if (currentWater + x) < 2.6{
+                currentWater += (Double(volumeWaterChoosed) / result) * fixedValue
+                target += volumeWaterChoosed
+            }else{
+                currentWater = 2.6
+                target = Int(result)
+            }
+        }
         generator.notificationOccurred(.success)
 
         if Int(target) == Int(result) {
             targetAchieved = true
         }
-
-
     }
 
     func undoDrinkAction() {
@@ -124,7 +131,7 @@ struct DrinkView: View {
                     }.disabled(target <= 0)
                 }.padding(.top, 30)
             }.alert(isPresented: $targetAchieved) { () -> Alert in
-                Alert(title: Text("Congratulation!"), message: Text("You've completed today's water intake target"), dismissButton: .default(Text("Done")))
+                Alert(title: Text("Congratulation \(name)!"), message: Text("You've completed today's water intake target"), dismissButton: .default(Text("Done")))
             }
             .onAppear{
                 IntervalSetup()
@@ -165,6 +172,11 @@ extension DrinkView {
         // if the startTime value equal to the time NOW
         if startTime == .now {
             UNUserNotificationCenter.current().add(request)
+
+            // Remove all pending notification when daily intake target achieved
+            if targetAchieved {
+                UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+            }
         }
 
     }
