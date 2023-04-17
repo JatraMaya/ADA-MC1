@@ -13,11 +13,12 @@ struct chooseTimeView: View {
     let volumeWater: [Int] = [200, 250, 300, 350, 400, 450, 500, 550, 600]
     @State var volumeWaterChoosed = 200
     @State var intervalChoosed = 30
-    let timeIntervalList: [Int] = [30, 45, 60]
+    let timeIntervalList: [Int] = [30, 45, 60, 75, 90, 105, 120]
+
+    @AppStorage("intervalReminder") var intervalReminder = 0
     
     var body: some View {
         VStack(spacing: 24){
-
             VStack{
                 Image("time")
                     .resizable()
@@ -29,38 +30,34 @@ struct chooseTimeView: View {
                     .fontWeight(.bold)
                     .frame(width: 300)
                 Form{
+                    Section(header: Text("volume per drink")){
                     HStack{
-                        Text("Water Volume")
-                        Picker("", selection: $volumeWaterChoosed) {
-                            ForEach (volumeWater, id: \.self) {
-                                Text("\($0)").tag($0)
+                            Text("Water Volume")
+                            Picker("", selection: $volumeWaterChoosed) {
+                                ForEach (volumeWater, id: \.self) {
+                                    Text("\($0) ml").tag($0)
+                                }
                             }
                         }
                     }
-
-                    HStack{
-                        Text("Start Time")
-                        DatePicker("", selection: $startTime, displayedComponents: .hourAndMinute)
-                        
-                        
-                    }.padding(.top, 75)
-                    HStack{
-                        Text("Interval")
-                        Picker("", selection: $intervalChoosed) {
-                            ForEach(timeIntervalList, id: \.self) {
-                                Text("\($0) minutes").tag($0)
+                    Section(header: Text("time to drink")) {
+                        HStack{
+                            Text("Start Time")
+                            DatePicker("", selection: $startTime, displayedComponents: .hourAndMinute)
+                        }
+                        HStack{
+                            Text("Interval")
+                            Picker("", selection: $intervalChoosed) {
+                                ForEach(timeIntervalList, id: \.self) {
+                                    Text("\($0) minutes").tag($0)                            }
                             }
                         }
-
                     }
-                    
-                }.scrollContentBackground(.hidden)
-                    .padding( -35)
-                
+                }.frame(width: 400)
+                .scrollContentBackground(.hidden)
             }
-            
             NavigationLink{
-                DrinkView()
+                DrinkView(intervalChoosed: $intervalChoosed)
             }label: {
                 Text("Start".capitalized)
                     .padding()
@@ -91,10 +88,8 @@ struct chooseTimeView_Previews: PreviewProvider {
 }
 
 extension chooseTimeView {
-
-    func getIntervalInSeconds() -> Int {
-        return intervalChoosed * 60
-    }
+    
+   
 
 
     

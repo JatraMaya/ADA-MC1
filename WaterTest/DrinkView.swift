@@ -13,6 +13,7 @@ struct DrinkView: View {
     @AppStorage("weight") var weight: String = ""
     @AppStorage("volumeWaterChoosed") var volumeWaterChoosed = 200
     @AppStorage("result") var result = 0.0
+    @Binding var intervalChoosed: Int
 
     let fixedValue = 2.6
 
@@ -114,32 +115,9 @@ struct DrinkView: View {
                     }.disabled(target <= 0)
                 }.padding(.top, 30)
             }
-//            VStack{
-//                Button("Schedule Notification") {
-//                    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
-//                        if success {
-//                            print("All set!")
-//                        } else if let error = error {
-//                            print(error.localizedDescription)
-//                        }
-//                    }
-//                }
-//                Button("Schedule Notification") {
-//                    let content = UNMutableNotificationContent()
-//                    content.title = "Feed the cat"
-//                    content.subtitle = "It looks hungry"
-//                    content.sound = UNNotificationSound.default
-//
-//                    // show this notification five seconds from now
-//                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-//
-//                    // choose a random identifier
-//                    let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-//
-//                    // add our notification request
-//                    UNUserNotificationCenter.current().add(request)
-//                }
-//            }
+            .onAppear{
+                IntervalSetup()
+            }
         }
         
     }
@@ -147,6 +125,31 @@ struct DrinkView: View {
 
 struct DrinkView_Previews: PreviewProvider {
     static var previews: some View {
-        DrinkView()
+        DrinkView(intervalChoosed: .constant(1))
+    }
+}
+
+extension DrinkView {
+
+    func getIntervalInSeconds() -> Int {
+        return intervalChoosed * 60
+    }
+
+    func IntervalSetup() {
+
+        let intervalChoosedDouble = Double(getIntervalInSeconds())
+        let content = UNMutableNotificationContent()
+        content.title = "Time to drink"
+        content.subtitle = "It's time to hydrate your body"
+
+        content.sound = UNNotificationSound.default
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: intervalChoosedDouble, repeats: true)
+
+        // choose a random identifier
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+
+        // add our notification request
+        UNUserNotificationCenter.current().add(request)
+
     }
 }

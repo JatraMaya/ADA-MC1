@@ -6,9 +6,8 @@
 //
 
 import SwiftUI
-import UserNotifications
 
-@main
+ @main
 struct WaterTestApp: App {
     var body: some Scene {
         WindowGroup {

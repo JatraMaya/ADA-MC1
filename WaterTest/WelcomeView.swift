@@ -35,8 +35,6 @@ struct WelcomeView: View {
                         .background(Color.blue)
                         .foregroundColor(Color.white)
                         .cornerRadius(10)
-                    
-                    
                 }
             }
             
