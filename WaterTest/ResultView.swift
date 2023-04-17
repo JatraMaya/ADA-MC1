@@ -8,10 +8,7 @@
 import SwiftUI
 
 struct ResultView: View {
-//    @AppStorage("name") var name:String
     @AppStorage("weight") var weight: String = ""
-
-//    @State private var result = ""
     @AppStorage("result") var result = 0.0
 
     func calculate() {
@@ -29,7 +26,7 @@ struct ResultView: View {
         var body: some View {
             VStack{
                 Spacer()
-                Text("You need to drink \(Int(result))ml today!")
+                Text("You need to drink \(Int(result))ml per day!")
                     .multilineTextAlignment(.center)
                     .onAppear(perform: calculate)
                     .font(.largeTitle)
@@ -52,7 +49,6 @@ struct ResultView: View {
                 .padding(24)
             }
         }
-
     }
 
     struct ResultView_Previews: PreviewProvider {

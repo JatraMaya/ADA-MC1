@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DrinkView: View {
 
+    @State var pulseEffect = 1.0
     @AppStorage("name") var name = ""
     @AppStorage("currentWater") var currentWater = 0.0
     @AppStorage("target") var target:Int = 0
@@ -32,6 +33,19 @@ struct DrinkView: View {
 
     // Generate basic haptic object
     let generator = UINotificationFeedbackGenerator()
+
+    func calculate() {
+
+        let weightInt = Int(weight) ?? 0
+
+        if weightInt <= 10 {
+            result = Double(weightInt) * 100
+        }else if weightInt <= 20 {
+            result = (1000 + Double(weightInt) * 50)
+        }else {
+            result = 1500 + Double(weightInt) * 20
+        }
+    }
 
     func drinkAction() {
 
@@ -76,7 +90,7 @@ struct DrinkView: View {
                     showSetting.toggle()
                 }label: {
                     Image(systemName: "gearshape.fill")
-                        .padding(.leading, 350)
+                        .padding(.leading, 300)
                         .font(.system(size: 24))
                 }
                 Text("Drink Input")
@@ -136,7 +150,9 @@ struct DrinkView: View {
                             .shadow(color: .gray, radius: 2, x: 2, y: 3)
                     }.disabled(target <= 0)
                 }.padding(.top, 30)
-            }.sheet(isPresented: $showSetting, content: {
+            }.sheet(isPresented: $showSetting, onDismiss: {
+                calculate()
+            },content: {
                 Form{
                     Section(header: Text("General settings")){
                         HStack{
@@ -169,8 +185,23 @@ struct DrinkView: View {
                             }
                         }
                     }
+                }.scrollContentBackground(.hidden)
+                .frame(height: 500)
+                    .padding(.top, -200)
+                VStack{
+                    Image(systemName: "chevron.compact.down").font(.system(size: 30))
+                    Image(systemName: "chevron.compact.down").font(.system(size: 25))
+                }.opacity(pulseEffect)
+                .onAppear{
+                    withAnimation(.easeInOut(duration: 0.5).repeatForever(autoreverses: true)) {
+                            pulseEffect = 0.3
+                        }
                 }
-            })
+
+                Text("Swipe down to close").padding(.top, 10)
+            }
+
+            )
 
             .alert(isPresented: $targetAchieved) { () -> Alert in
                 Alert(title: Text("Congratulation \(name)!"), message: Text("You've completed today's water intake target"), dismissButton: .default(Text("Done")))
@@ -225,50 +256,3 @@ extension DrinkView {
 
     }
 }
-
-//struct SettingsView: View {
-//    @AppStorage("name") private var name = ""
-//    @AppStorage("weight") private var weight = ""
-//    @AppStorage("volumeWaterChoosed") var volumeWaterChoosed = 200
-//    @AppStorage("intervalChoosed") var intervalChoosed = 30
-//    @Binding var startTime: Date
-//    let volumeWater: [Int] = [200, 250, 300, 350, 400, 450, 500, 550, 600]
-//    let timeIntervalList: [Int] = [30, 45, 60, 75, 90, 105, 120]
-//
-//    var body: some View {
-//        Form{
-//            Section(header: Text("General settings")){
-//                HStack{
-//                    Text("Weight").frame(width: 100, alignment: .leading)
-//                    TextField("", text: $weight).textFieldStyle(SuffixTextFieldStyle(suffix: "Kg"))
-//                }
-//            }
-//            Section(header:Text("Water intake per drink")){
-//                HStack{
-//                    Text("Water Volume")
-//                    Picker("", selection: $volumeWaterChoosed) {
-//                        ForEach (volumeWater, id: \.self) {
-//                            Text("\($0) ml").tag($0)
-//                        }
-//                    }
-//                }
-//            }
-//            Section(header: Text("Time Settings")) {
-//                HStack{
-//                        Text("Start Time")
-//                    DatePicker("", selection: $startTime, displayedComponents: .hourAndMinute)
-//
-//                }
-//                HStack{
-//                    Text("Interval")
-//                    Picker("", selection: $intervalChoosed) {
-//                        ForEach(timeIntervalList, id: \.self) {
-//                            Text("\($0) minutes").tag($0)
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
-//}
-
