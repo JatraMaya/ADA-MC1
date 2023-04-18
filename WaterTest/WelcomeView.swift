@@ -27,6 +27,7 @@ struct WelcomeView: View {
                             .frame(maxWidth: 360)
                             .padding(.bottom, 50)
                     }
+
                     NavigationLink {
                         DataView()
                     }label: {

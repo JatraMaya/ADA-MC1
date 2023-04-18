@@ -60,8 +60,10 @@ struct chooseTimeView: View {
                 }.frame(width: 400)
                 .scrollContentBackground(.hidden)
             }
+
             NavigationLink{
                 DrinkView().navigationBarBackButtonHidden(true)
+
             }label: {
                 Text("Start".capitalized)
                     .padding()
