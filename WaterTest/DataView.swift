@@ -17,8 +17,6 @@ struct DataView: View {
     }
     var body: some View {
         VStack(spacing: 24){
-            Spacer()
-            Spacer()
             Image("data-input")
                 .resizable()
                 .scaledToFit()

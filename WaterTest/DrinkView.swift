@@ -9,7 +9,6 @@ import SwiftUI
 
 struct DrinkView: View {
 
-
     @AppStorage("name") var name = ""
     @AppStorage("currentWater") var currentWater = 0.0
     @AppStorage("target") var target:Int = 0
@@ -18,19 +17,24 @@ struct DrinkView: View {
     @AppStorage("result") var result = 0.0
     @AppStorage("intervalChoosed") var intervalChoosed = 30
     @AppStorage("setupIsDone") var setupIsDone: Bool = false
-    @AppStorage("targetAchieved") var targetAchieved: Bool = true
 
+    @State var goalAchieved: Bool = false
+    @State var showCongartulateMessage: Bool = false
+    @State var showFailedMessage: Bool = false
 
+    // State realted to time
+    @State var isTimerRunning: Bool = false
+    @State var isNextDay: Bool = false
     @State var startTime: Date = Date.now
+    @State var timeTracker: Date = Date.now
     @State var showSetting: Bool = false
+
+    // For timer purpose
+    @State var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
 
     // Value for animation purpose on sheet settings
     @State var pulseEffect = 1.0
-
-    // Store Tomorrow's date
-    //    let TwentyHoursInSeconds = Double(86400)
-    //    let tomorrowDate: Date = Date.now.addingTimeInterval(TwentyHoursInSeconds)
 
     // Picker list for water volume and timeInterval
     let volumeWater: [Int] = [200, 250, 300, 350, 400, 450, 500, 550, 600]
@@ -39,19 +43,12 @@ struct DrinkView: View {
     // Magic number to control water animation (to scale the image properly)
     let fixedValue = 2.6
 
-    @State var drinkTarget = 0
-    //    let drink = 600
-
     // Instantiate basic haptic object
     let generator = UINotificationFeedbackGenerator()
 
-//    init() {
-//        setupIsDone = true
-//        IntervalSetup()
-//    }
-//
     var body: some View {
         VStack{
+            Text("\(Int(timeTracker.timeIntervalSince1970) - Int(startTime.timeIntervalSince1970))")
             Button{
                 showSetting.toggle()
             }label: {
@@ -103,6 +100,13 @@ struct DrinkView: View {
                         .background(.blue)
                         .cornerRadius(4)
                 }
+                .alert(isPresented: $showCongartulateMessage) {
+                    Alert(title: Text("Congratulation \(name)!"), message: Text("You've completed today's water intake target. Let's try to achieve the same result for tomorrow"), dismissButton: .default(Text("Done"), action: {
+                        target = 0
+                        currentWater = 0.0
+                        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                    }))
+                }
                 Button{
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
                         undoDrinkAction()
@@ -114,20 +118,42 @@ struct DrinkView: View {
                         .foregroundColor((target <= 0) ? .black : .blue)
                         .cornerRadius(10)
                         .shadow(color: .gray, radius: 2, x: 2, y: 3)
-                }.disabled(target <= 0)
+                }
+                .alert(isPresented: $showFailedMessage) {
+                    Alert(title: Text("Too bad"), message: Text("You failed to achieve your target today, fortunately there is always tomorrow"), dismissButton: .default(Text("Done"), action: {
+
+                        target = 0
+                        currentWater = 0.0
+                        startTime = Date.now
+                        timeTracker = Date.now
+                        NotificationSetup()
+                    }))
+                }
+                .disabled(target <= 0)
             }.padding(.top, 30)
         }
-         //Move onAppear modifier before sheet
-         //if it's below somehow a bug will occur
-        .onAppear{
-            setupIsDone = true
-            print("On appear action")
 
-            if targetAchieved {
-                UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-            }else{
+        // Running timer with on receive
+        .onReceive(timer){
+            _ in
+            timeTracker += 1
+
+            // Track if it's already 24 hours since the last time the user open the app
+            if (Int(timeTracker.timeIntervalSince1970) - Int(startTime.timeIntervalSince1970) >= (60 * 60 * 24)) {
+                if Int(target) < Int(result) {
+                    showFailedMessage = true
+                }
+
+                startTime = Date.now
+                timeTracker = Date.now
                 NotificationSetup()
             }
+        }
+        .onAppear{
+
+            // setup onboarding as done
+            setupIsDone = true
+            NotificationSetup()
         }
         .sheet(isPresented: $showSetting, onDismiss: {
             calculate()
@@ -136,7 +162,7 @@ struct DrinkView: View {
                 Section(header: Text("General settings")){
                     HStack{
                         Text("Weight").frame(width: 100, alignment: .leading)
-                        TextField("", text: $weight).textFieldStyle(SuffixTextFieldStyle(suffix: "Kg"))
+                        TextField("", text: $weight).textFieldStyle(SuffixTextFieldStyle(suffix: "Kg")).keyboardType(.numberPad)
                     }
                 }
                 Section(header:Text("Water intake per drink")){
@@ -151,12 +177,7 @@ struct DrinkView: View {
                 }
                 Section(header: Text("Time Settings")) {
                     HStack{
-                        Text("Start Time")
-                        DatePicker("", selection: $startTime, displayedComponents: .hourAndMinute)
-
-                    }
-                    HStack{
-                        Text("Interval")
+                        Text("Reminder Interval")
                         Picker("", selection: $intervalChoosed) {
                             ForEach(timeIntervalList, id: \.self) {
                                 Text("\($0) minutes").tag($0)
@@ -165,8 +186,7 @@ struct DrinkView: View {
                     }
                 }
             }.scrollContentBackground(.hidden)
-                .frame(height: 700)
-                .padding(.top, -5)
+                .frame(height: 400)
             VStack{
                 Image(systemName: "chevron.compact.down").font(.system(size: 30))
                 Image(systemName: "chevron.compact.down").font(.system(size: 25))
@@ -176,26 +196,25 @@ struct DrinkView: View {
                 withAnimation(.easeInOut(duration: 0.5).repeatForever(autoreverses: true)) {
                     pulseEffect = 0.3
                 }
-            }
-
+            }.presentationDetents([.medium])
             Text("Swipe down to close").padding(.top, 10)
         }
-
         )
 
-        .alert(isPresented: $targetAchieved) { () -> Alert in
-            Alert(title: Text("Congratulation \(name)!"), message: Text("You've completed today's water intake target"), dismissButton: .default(Text("Done")))
-        }
-    }
 
+
+    }
 }
 
 struct DrinkView_Previews: PreviewProvider {
     static var previews: some View {
         DrinkView()
-        //        DrinkView(startTime: .constant(Date.now))
     }
 }
+
+
+
+// MARK: Collection of functions
 
 extension DrinkView {
 
@@ -228,7 +247,8 @@ extension DrinkView {
         generator.notificationOccurred(.success)
 
         if Int(target) == Int(result) {
-            targetAchieved = true
+            goalAchieved = true
+            showCongartulateMessage = true
         }
     }
 
@@ -248,13 +268,10 @@ extension DrinkView {
         generator.notificationOccurred(.success)
     }
 
-
-    // function to convert minutes interval to second unit
     func getIntervalInSeconds() -> Int {
         return intervalChoosed * 60
     }
 
-    // function to setup notification
     func NotificationSetup() {
 
         // Randomize the notification content
@@ -280,6 +297,13 @@ extension DrinkView {
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: intervalChoosedDouble, repeats: true)
 
         let request = UNNotificationRequest(identifier: "drink notif", content: content, trigger: trigger)
-        UNUserNotificationCenter.current().add(request)
+
+        if !goalAchieved {
+            UNUserNotificationCenter.current().add(request)
+        }
+    }
+
+    func is24Hour() -> Bool {
+        return (Int(startTime.timeIntervalSince1970) - Int(timeTracker.timeIntervalSince1970) >= 86400)
     }
 }

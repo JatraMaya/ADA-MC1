@@ -17,8 +17,6 @@ struct chooseTimeView: View {
     // Picker list value
     let volumeWater: [Int] = [200, 250, 300, 350, 400, 450, 500, 550, 600]
     let timeIntervalList: [Int] = [30, 45, 60, 75, 90, 105, 120]
-
-    @AppStorage("intervalReminder") var intervalReminder = 0
     
     var body: some View {
         VStack(spacing: 24){
@@ -43,13 +41,13 @@ struct chooseTimeView: View {
                             }
                         }
                     }
-                    Section(header: Text("time to drink")) {
+                    Section(header: Text("reminder setup")) {
+//                        HStack{
+//                            Text("Start Time")
+//                            DatePicker("", selection: $startTime, displayedComponents: .hourAndMinute)
+//                        }
                         HStack{
-                            Text("Start Time")
-                            DatePicker("", selection: $startTime, displayedComponents: .hourAndMinute)
-                        }
-                        HStack{
-                            Text("Interval")
+                            Text("Reminder Interval")
                             Picker("", selection: $intervalChoosed) {
                                 ForEach(timeIntervalList, id: \.self) {
                                     Text("\($0) minutes").tag($0)
