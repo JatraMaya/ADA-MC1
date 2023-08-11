@@ -48,7 +48,6 @@ struct DrinkView: View {
 
     var body: some View {
         VStack{
-            Text("\(Int(timeTracker.timeIntervalSince1970) - Int(startTime.timeIntervalSince1970))")
             Button{
                 showSetting.toggle()
             }label: {
