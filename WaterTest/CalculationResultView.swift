@@ -7,28 +7,17 @@
 
 import SwiftUI
 
-struct ResultView: View {
-    @AppStorage("weight") var weight: String = ""
-    @AppStorage("result") var result = 0.0
+struct CalculationResultView: View {
 
-    func calculate() {
+    // Instantiate AppStorage with UserDefaultValues object
+    @StateObject var userDefaultValues = UserDefaultValues()
 
-        let weightInt = Int(weight) ?? 0
-
-        if weightInt <= 10 {
-            result = Double(weightInt) * 100
-        }else if weightInt <= 20 {
-            result = (1000 + Double(weightInt) * 50)
-        }else {
-            result = 1500 + Double(weightInt) * 20
-        }
-    }
-        var body: some View {
+    var body: some View {
             VStack{
                 Spacer()
-                Text("You need to drink \(Int(result))ml per day!")
+                Text("You need to drink \(Int(userDefaultValues.result))ml per day!")
                     .multilineTextAlignment(.center)
-                    .onAppear(perform: calculate)
+                    .onAppear(perform: calculateWaterNeeds)
                     .font(.largeTitle)
                         .fontWeight(.bold)
                 Spacer()
@@ -38,7 +27,7 @@ struct ResultView: View {
                     .frame(width: 250)
                 Spacer()
                 NavigationLink{
-                    chooseTimeView()
+                    ChooseWaterLevelTimeView()
                 }label: {
                     Text("Continue")
                         .frame(width: 320.0, height: 50.0)
@@ -51,11 +40,11 @@ struct ResultView: View {
         }
     }
 
-    struct ResultView_Previews: PreviewProvider {
+struct CalculationResultView_Previews: PreviewProvider {
 
-        static var previews: some View {
+    static var previews: some View {
 
-            ResultView()
-        }
+        CalculationResultView()
     }
+}
 

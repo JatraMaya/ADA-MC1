@@ -7,28 +7,44 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BD297D9E29E40D12008B9573 /* chooseTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD297D9D29E40D12008B9573 /* chooseTimeView.swift */; };
-		BD989E3629E5318D00A9BFA2 /* DrinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD989E3529E5318D00A9BFA2 /* DrinkView.swift */; };
-		BD989E3829E545DC00A9BFA2 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD989E3729E545DC00A9BFA2 /* SettingsView.swift */; };
+		BD1C09602A88A58E00095587 /* UserDefaultValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1C095F2A88A58E00095587 /* UserDefaultValues.swift */; };
+		BD1C09632A88A94200095587 /* DrinkView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1C09622A88A94200095587 /* DrinkView + Extension.swift */; };
+		BD1C09672A88ABDF00095587 /* OnBoardingFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1C09662A88ABDF00095587 /* OnBoardingFormView.swift */; };
+		BD297D9E29E40D12008B9573 /* ChooseWaterLevelTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD297D9D29E40D12008B9573 /* ChooseWaterLevelTimeView.swift */; };
+		BD299C722A88B764005C1756 /* GlassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD299C712A88B764005C1756 /* GlassView.swift */; };
+		BD299C752A88C19B005C1756 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD299C742A88C19B005C1756 /* HelperFunctions.swift */; };
+		BD299C772A88C73C005C1756 /* SettingsFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD299C762A88C73C005C1756 /* SettingsFormView.swift */; };
+		BD299C7B2A88CE26005C1756 /* SheetChevronIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD299C7A2A88CE26005C1756 /* SheetChevronIcon.swift */; };
+		BD299C7D2A88CF63005C1756 /* DrinkButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD299C7C2A88CF63005C1756 /* DrinkButtonView.swift */; };
+		BD8F62C52A88DA4B0059A6AB /* UndoDrinkButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8F62C42A88DA4B0059A6AB /* UndoDrinkButtonView.swift */; };
+		BD989E3629E5318D00A9BFA2 /* DrinkTrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD989E3529E5318D00A9BFA2 /* DrinkTrackerView.swift */; };
 		BDD9BFFC29D6CB2B00942501 /* WaterTestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD9BFFB29D6CB2B00942501 /* WaterTestApp.swift */; };
 		BDD9C00029D6CB2C00942501 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDD9BFFF29D6CB2C00942501 /* Assets.xcassets */; };
 		BDD9C00329D6CB2C00942501 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDD9C00229D6CB2C00942501 /* Preview Assets.xcassets */; };
 		BDD9C00C29D8BB0000942501 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD9C00B29D8BB0000942501 /* WelcomeView.swift */; };
-		BDD9C00E29D8C03B00942501 /* DataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD9C00D29D8C03B00942501 /* DataView.swift */; };
-		BDD9C01029D9522500942501 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD9C00F29D9522500942501 /* ResultView.swift */; };
+		BDD9C00E29D8C03B00942501 /* UserDataInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD9C00D29D8C03B00942501 /* UserDataInputView.swift */; };
+		BDD9C01029D9522500942501 /* CalculationResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD9C00F29D9522500942501 /* CalculationResultView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		BD297D9D29E40D12008B9573 /* chooseTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chooseTimeView.swift; sourceTree = "<group>"; };
-		BD989E3529E5318D00A9BFA2 /* DrinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkView.swift; sourceTree = "<group>"; };
-		BD989E3729E545DC00A9BFA2 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		BD1C095F2A88A58E00095587 /* UserDefaultValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultValues.swift; sourceTree = "<group>"; };
+		BD1C09622A88A94200095587 /* DrinkView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DrinkView + Extension.swift"; sourceTree = "<group>"; };
+		BD1C09662A88ABDF00095587 /* OnBoardingFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingFormView.swift; sourceTree = "<group>"; };
+		BD297D9D29E40D12008B9573 /* ChooseWaterLevelTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseWaterLevelTimeView.swift; sourceTree = "<group>"; };
+		BD299C712A88B764005C1756 /* GlassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassView.swift; sourceTree = "<group>"; };
+		BD299C742A88C19B005C1756 /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
+		BD299C762A88C73C005C1756 /* SettingsFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFormView.swift; sourceTree = "<group>"; };
+		BD299C7A2A88CE26005C1756 /* SheetChevronIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetChevronIcon.swift; sourceTree = "<group>"; };
+		BD299C7C2A88CF63005C1756 /* DrinkButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkButtonView.swift; sourceTree = "<group>"; };
+		BD8F62C42A88DA4B0059A6AB /* UndoDrinkButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndoDrinkButtonView.swift; sourceTree = "<group>"; };
+		BD989E3529E5318D00A9BFA2 /* DrinkTrackerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkTrackerView.swift; sourceTree = "<group>"; };
 		BDD9BFF829D6CB2B00942501 /* WaterTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaterTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDD9BFFB29D6CB2B00942501 /* WaterTestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterTestApp.swift; sourceTree = "<group>"; };
 		BDD9BFFF29D6CB2C00942501 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BDD9C00229D6CB2C00942501 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BDD9C00B29D8BB0000942501 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
-		BDD9C00D29D8C03B00942501 /* DataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataView.swift; sourceTree = "<group>"; };
-		BDD9C00F29D9522500942501 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
+		BDD9C00D29D8C03B00942501 /* UserDataInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataInputView.swift; sourceTree = "<group>"; };
+		BDD9C00F29D9522500942501 /* CalculationResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationResultView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +58,55 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BD1C095E2A88A57C00095587 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BD1C095F2A88A58E00095587 /* UserDefaultValues.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		BD1C09612A88A92400095587 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BD1C09622A88A94200095587 /* DrinkView + Extension.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		BD1C09652A88ABB200095587 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				BD1C09662A88ABDF00095587 /* OnBoardingFormView.swift */,
+				BD299C762A88C73C005C1756 /* SettingsFormView.swift */,
+			);
+			name = ViewModels;
+			sourceTree = "<group>";
+		};
+		BD299C702A88B754005C1756 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BD989E3529E5318D00A9BFA2 /* DrinkTrackerView.swift */,
+				BD297D9D29E40D12008B9573 /* ChooseWaterLevelTimeView.swift */,
+				BDD9C00B29D8BB0000942501 /* WelcomeView.swift */,
+				BDD9C00F29D9522500942501 /* CalculationResultView.swift */,
+				BDD9C00D29D8C03B00942501 /* UserDataInputView.swift */,
+				BD299C712A88B764005C1756 /* GlassView.swift */,
+				BD299C7A2A88CE26005C1756 /* SheetChevronIcon.swift */,
+				BD299C7C2A88CF63005C1756 /* DrinkButtonView.swift */,
+				BD8F62C42A88DA4B0059A6AB /* UndoDrinkButtonView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		BD299C732A88C17F005C1756 /* HelperFunctions */ = {
+			isa = PBXGroup;
+			children = (
+				BD299C742A88C19B005C1756 /* HelperFunctions.swift */,
+			);
+			name = HelperFunctions;
+			sourceTree = "<group>";
+		};
 		BDD9BFEF29D6CB2B00942501 = {
 			isa = PBXGroup;
 			children = (
@@ -61,13 +126,12 @@
 		BDD9BFFA29D6CB2B00942501 /* WaterTest */ = {
 			isa = PBXGroup;
 			children = (
+				BD299C732A88C17F005C1756 /* HelperFunctions */,
+				BD299C702A88B754005C1756 /* Views */,
+				BD1C09652A88ABB200095587 /* ViewModels */,
+				BD1C09612A88A92400095587 /* Extensions */,
+				BD1C095E2A88A57C00095587 /* Models */,
 				BDD9BFFB29D6CB2B00942501 /* WaterTestApp.swift */,
-				BDD9C00B29D8BB0000942501 /* WelcomeView.swift */,
-				BDD9C00D29D8C03B00942501 /* DataView.swift */,
-				BDD9C00F29D9522500942501 /* ResultView.swift */,
-				BD297D9D29E40D12008B9573 /* chooseTimeView.swift */,
-				BD989E3529E5318D00A9BFA2 /* DrinkView.swift */,
-				BD989E3729E545DC00A9BFA2 /* SettingsView.swift */,
 				BDD9BFFF29D6CB2C00942501 /* Assets.xcassets */,
 				BDD9C00129D6CB2C00942501 /* Preview Content */,
 			);
@@ -152,12 +216,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BD989E3829E545DC00A9BFA2 /* SettingsView.swift in Sources */,
-				BDD9C00E29D8C03B00942501 /* DataView.swift in Sources */,
-				BD297D9E29E40D12008B9573 /* chooseTimeView.swift in Sources */,
-				BDD9C01029D9522500942501 /* ResultView.swift in Sources */,
-				BD989E3629E5318D00A9BFA2 /* DrinkView.swift in Sources */,
+				BDD9C00E29D8C03B00942501 /* UserDataInputView.swift in Sources */,
+				BD299C7D2A88CF63005C1756 /* DrinkButtonView.swift in Sources */,
+				BD1C09632A88A94200095587 /* DrinkView + Extension.swift in Sources */,
+				BD1C09672A88ABDF00095587 /* OnBoardingFormView.swift in Sources */,
+				BD297D9E29E40D12008B9573 /* ChooseWaterLevelTimeView.swift in Sources */,
+				BD8F62C52A88DA4B0059A6AB /* UndoDrinkButtonView.swift in Sources */,
+				BD299C752A88C19B005C1756 /* HelperFunctions.swift in Sources */,
+				BDD9C01029D9522500942501 /* CalculationResultView.swift in Sources */,
+				BD989E3629E5318D00A9BFA2 /* DrinkTrackerView.swift in Sources */,
 				BDD9BFFC29D6CB2B00942501 /* WaterTestApp.swift in Sources */,
+				BD299C772A88C73C005C1756 /* SettingsFormView.swift in Sources */,
+				BD299C722A88B764005C1756 /* GlassView.swift in Sources */,
+				BD1C09602A88A58E00095587 /* UserDefaultValues.swift in Sources */,
+				BD299C7B2A88CE26005C1756 /* SheetChevronIcon.swift in Sources */,
 				BDD9C00C29D8BB0000942501 /* WelcomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

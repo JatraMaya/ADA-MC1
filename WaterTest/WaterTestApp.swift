@@ -15,7 +15,7 @@ struct WaterTestApp: App {
             if !setupIsDone{
                 WelcomeView()
             }else{
-                DrinkView()
+                DrinkTrackerView()
             }
         }
     }

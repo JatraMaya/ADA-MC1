@@ -8,16 +8,15 @@
 import SwiftUI
 import UserNotifications
 
-struct chooseTimeView: View {
+struct ChooseWaterLevelTimeView: View {
     @State var startTime = Date.now
 
-    @AppStorage("volumeWaterChoosed") var volumeWaterChoosed = 200
-    @AppStorage("intervalChoosed") var intervalChoosed = 30
+    // Instantiate AppStorage with UserDefaultValues object
+    @StateObject var userDefaultValues = UserDefaultValues()
 
     // Picker list value
-    let volumeWater: [Int] = [200, 250, 300, 350, 400, 450, 500, 550, 600]
-    let timeIntervalList: [Int] = [30, 45, 60, 75, 90, 105, 120]
-    
+    let pickerValue = PickerValue()
+
     var body: some View {
         VStack(spacing: 24){
             VStack{
@@ -34,22 +33,18 @@ struct chooseTimeView: View {
                     Section(header: Text("volume per drink")){
                     HStack{
                             Text("Water Volume")
-                            Picker("", selection: $volumeWaterChoosed) {
-                                ForEach (volumeWater, id: \.self) {
+                        Picker("", selection: userDefaultValues.$volumeWaterChoosed) {
+                            ForEach (pickerValue.volumeWaterList , id: \.self) {
                                     Text("\($0) ml").tag($0)
                                 }
                             }
                         }
                     }
                     Section(header: Text("reminder setup")) {
-//                        HStack{
-//                            Text("Start Time")
-//                            DatePicker("", selection: $startTime, displayedComponents: .hourAndMinute)
-//                        }
                         HStack{
                             Text("Reminder Interval")
-                            Picker("", selection: $intervalChoosed) {
-                                ForEach(timeIntervalList, id: \.self) {
+                            Picker("", selection: userDefaultValues.$timerIntervalChoosed) {
+                                ForEach(pickerValue.timeIntervalList, id: \.self) {
                                     Text("\($0) minutes").tag($0)
                                 }
                             }
@@ -60,7 +55,7 @@ struct chooseTimeView: View {
             }
 
             NavigationLink{
-                DrinkView().navigationBarBackButtonHidden(true)
+                DrinkTrackerView().navigationBarBackButtonHidden(true)
 
             }label: {
                 Text("Start".capitalized)
@@ -85,8 +80,8 @@ struct chooseTimeView: View {
     }
 }
 
-struct chooseTimeView_Previews: PreviewProvider {
+struct ChooseWaterLevelTimeView_Previews: PreviewProvider {
     static var previews: some View {
-        chooseTimeView()
+        ChooseWaterLevelTimeView()
     }
 }

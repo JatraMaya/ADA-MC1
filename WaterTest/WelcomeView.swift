@@ -29,7 +29,7 @@ struct WelcomeView: View {
                     }
 
                     NavigationLink {
-                        DataView()
+                        UserDataInputView()
                     }label: {
                         Text("Start".capitalized)
                             .font(.headline)
