@@ -37,7 +37,7 @@ struct SettingsFormView: View {
                 HStack{
                     Text("Reminder Interval")
                     Picker("", selection: $timerIntervalChoosed) {
-                        ForEach(pickerValue.volumeWaterList, id: \.self) {
+                        ForEach(pickerValue.timeIntervalList, id: \.self) {
                             Text("\($0) minutes").tag($0)
                         }
                     }
