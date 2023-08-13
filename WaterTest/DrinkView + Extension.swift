@@ -9,6 +9,21 @@ import SwiftUI
 
 extension DrinkTrackerView {
 
+    func activateTimer() {
+        timeTrackerStartTime += 1
+
+        // Track if it's already 24 hours since the last time the user open the app
+        if (Int(timeTrackerStartTime.timeIntervalSince1970) - Int(notificationStartTime.timeIntervalSince1970) >= (60 * 60 * 24)) {
+            if Int(userDefaultValues.waterIntakeTarget) < Int(userDefaultValues.result) {
+                isFailedMessageShowed = true
+            }
+
+            notificationStartTime = Date.now
+            timeTrackerStartTime = Date.now
+            NotificationSetup()
+        }
+    }
+
     /// Function to update waterIntakeTarget and waterIntakeLevel based on user action when button is tapped
     func drinkButtonIsTapped() {
 
