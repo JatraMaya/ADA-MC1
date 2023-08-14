@@ -9,6 +9,8 @@ import SwiftUI
 
 extension DrinkTrackerView {
 
+
+    /// Function to actvate timer when user open the app for the first time
     func activateTimer() {
         timeTrackerStartTime += 1
 
@@ -75,36 +77,36 @@ extension DrinkTrackerView {
     }
 
 
-    /// Function to setup notification
+    // Function to setup notification
     func NotificationSetup() {
 
-        // Randomize the notification content
-        let notificationTitleLists: [String] = ["Stay Hydrated",
-                                                "Drink Up!",
-                                                "H20 Check-in",
-                                                "Water Reminder",
-                                                "Hydration Alert"]
+    // Randomize the notification content
+    let notificationTitleLists: [String] = ["Stay Hydrated",
+                                            "Drink Up!",
+                                            "H20 Check-in",
+                                            "Water Reminder",
+                                            "Hydration Alert"]
 
-        let notificationSubtitleLists: [String] = ["Don't forget to drink water throughout the day!",
-                                                   "Time to drink some water and stay hydrated",
-                                                   "How's your water intake today? Keep drinking!",
-                                                   "Take a break and drink some water!",
-                                                   "It's hydrating time!"]
+    let notificationSubtitleLists: [String] = ["Don't forget to drink water throughout the day!",
+                                                "Time to drink some water and stay hydrated",
+                                                "How's your water intake today? Keep drinking!",
+                                                "Take a break and drink some water!",
+                                                "It's hydrating time!"]
 
-        let randomIntforNotification = Int.random(in: 1..<notificationTitleLists.count)
+    let randomIntforNotification = Int.random(in: 1..<notificationTitleLists.count)
 
-        let intervalChoosedDouble = Double(getIntervalInSeconds())
-        let content = UNMutableNotificationContent()
+    let intervalChoosedDouble = Double(getIntervalInSeconds())
+    let content = UNMutableNotificationContent()
+
         content.title = notificationTitleLists[randomIntforNotification]
         content.subtitle = notificationSubtitleLists[randomIntforNotification]
-
         content.sound = UNNotificationSound.default
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: intervalChoosedDouble, repeats: true)
 
-        let request = UNNotificationRequest(identifier: "drink notif", content: content, trigger: trigger)
+    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: intervalChoosedDouble, repeats: true)
+    let request = UNNotificationRequest(identifier: "drink notif", content: content, trigger: trigger)
 
-        if !isDrinkGoalAchieved {
-            UNUserNotificationCenter.current().add(request)
+    if !isDrinkGoalAchieved {
+        UNUserNotificationCenter.current().add(request)
         }
     }
 
@@ -113,4 +115,3 @@ extension DrinkTrackerView {
         return (Int(notificationStartTime.timeIntervalSince1970) - Int(timeTrackerStartTime.timeIntervalSince1970) >= secondsInADay)
     }
 }
-
