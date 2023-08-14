@@ -29,29 +29,8 @@ struct ChooseWaterLevelTimeView: View {
                     .font(.headline)
                     .fontWeight(.bold)
                     .frame(width: 300)
-                Form{
-                    Section(header: Text("volume per drink")){
-                    HStack{
-                            Text("Water Volume")
-                        Picker("", selection: userDefaultValues.$volumeWaterChoosed) {
-                            ForEach (pickerValue.volumeWaterList , id: \.self) {
-                                    Text("\($0) ml").tag($0)
-                                }
-                            }
-                        }
-                    }
-                    Section(header: Text("reminder setup")) {
-                        HStack{
-                            Text("Reminder Interval")
-                            Picker("", selection: userDefaultValues.$timerIntervalChoosed) {
-                                ForEach(pickerValue.timeIntervalList, id: \.self) {
-                                    Text("\($0) minutes").tag($0)
-                                }
-                            }
-                        }
-                    }
-                }.frame(width: 400)
-                .scrollContentBackground(.hidden)
+                FormTimerAndWaterLevelView(waterVolumeChoosed: userDefaultValues.$volumeWaterChoosed,
+                                           timerIntervalChoosed: userDefaultValues.$timerIntervalChoosed)
             }
 
             NavigationLink{
