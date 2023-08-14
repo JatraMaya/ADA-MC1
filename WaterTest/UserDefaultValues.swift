@@ -18,10 +18,3 @@ class UserDefaultValues: ObservableObject {
     @AppStorage("intervalChoosed") var timerIntervalChoosed: Int = 30
     @AppStorage("setupIsDone") var setupIsDone: Bool = false
 }
-
-
-/// Struct to contain picker values for VolumeWater and timeInterval selection
-struct PickerValue{
-    let volumeWaterList: [Int] = [200, 250, 300, 350, 400, 450, 500, 550, 600]
-    let timeIntervalList: [Int] = [30, 45, 60, 75, 90, 105, 120]
-}

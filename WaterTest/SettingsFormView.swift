@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsFormView: View {
 
-    let pickerValue = PickerValue()
+    let pickerValue = PickerValues()
 
     @Binding var userWeight: String
     @Binding var timerIntervalChoosed: Int

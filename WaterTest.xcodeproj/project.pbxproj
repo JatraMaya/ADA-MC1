@@ -18,6 +18,7 @@
 		BD299C7D2A88CF63005C1756 /* DrinkButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD299C7C2A88CF63005C1756 /* DrinkButtonView.swift */; };
 		BD8F62C52A88DA4B0059A6AB /* UndoDrinkButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8F62C42A88DA4B0059A6AB /* UndoDrinkButtonView.swift */; };
 		BD8F62C72A8A0C250059A6AB /* FormTimerAndWaterLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8F62C62A8A0C250059A6AB /* FormTimerAndWaterLevelView.swift */; };
+		BD8F62C92A8A0E410059A6AB /* PickerValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8F62C82A8A0E410059A6AB /* PickerValues.swift */; };
 		BD989E3629E5318D00A9BFA2 /* DrinkTrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD989E3529E5318D00A9BFA2 /* DrinkTrackerView.swift */; };
 		BDD9BFFC29D6CB2B00942501 /* WaterTestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD9BFFB29D6CB2B00942501 /* WaterTestApp.swift */; };
 		BDD9C00029D6CB2C00942501 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDD9BFFF29D6CB2C00942501 /* Assets.xcassets */; };
@@ -39,6 +40,7 @@
 		BD299C7C2A88CF63005C1756 /* DrinkButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkButtonView.swift; sourceTree = "<group>"; };
 		BD8F62C42A88DA4B0059A6AB /* UndoDrinkButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndoDrinkButtonView.swift; sourceTree = "<group>"; };
 		BD8F62C62A8A0C250059A6AB /* FormTimerAndWaterLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTimerAndWaterLevelView.swift; sourceTree = "<group>"; };
+		BD8F62C82A8A0E410059A6AB /* PickerValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerValues.swift; sourceTree = "<group>"; };
 		BD989E3529E5318D00A9BFA2 /* DrinkTrackerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkTrackerView.swift; sourceTree = "<group>"; };
 		BDD9BFF829D6CB2B00942501 /* WaterTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaterTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDD9BFFB29D6CB2B00942501 /* WaterTestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterTestApp.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				BD1C095F2A88A58E00095587 /* UserDefaultValues.swift */,
+				BD8F62C82A8A0E410059A6AB /* PickerValues.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 				BD299C752A88C19B005C1756 /* HelperFunctions.swift in Sources */,
 				BDD9C01029D9522500942501 /* CalculationResultView.swift in Sources */,
 				BD8F62C72A8A0C250059A6AB /* FormTimerAndWaterLevelView.swift in Sources */,
+				BD8F62C92A8A0E410059A6AB /* PickerValues.swift in Sources */,
 				BD989E3629E5318D00A9BFA2 /* DrinkTrackerView.swift in Sources */,
 				BDD9BFFC29D6CB2B00942501 /* WaterTestApp.swift in Sources */,
 				BD299C772A88C73C005C1756 /* SettingsFormView.swift in Sources */,

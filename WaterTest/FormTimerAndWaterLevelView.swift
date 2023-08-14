@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FormTimerAndWaterLevelView: View {
 
-    let pickerValue = PickerValue()
+    let pickerValue = PickerValues()
 
     @Binding var waterVolumeChoosed: Int
     @Binding var timerIntervalChoosed: Int

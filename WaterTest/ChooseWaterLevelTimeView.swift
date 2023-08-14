@@ -15,7 +15,7 @@ struct ChooseWaterLevelTimeView: View {
     @StateObject var userDefaultValues = UserDefaultValues()
 
     // Picker list value
-    let pickerValue = PickerValue()
+    let pickerValue = PickerValues()
 
     var body: some View {
         VStack(spacing: 24){
