@@ -10,7 +10,7 @@ import SwiftUI
 struct SheetChevronIcon: View {
     
     // Value for animation purpose on sheet settings
-    @State var pulseEffect = 1.0
+    @State var pulseEffectDurationInSecond = 1.0
     
     var body: some View {
         VStack{
@@ -18,10 +18,10 @@ struct SheetChevronIcon: View {
                 Image(systemName: "chevron.compact.down").font(.system(size: 30))
                 Image(systemName: "chevron.compact.down").font(.system(size: 25))
             }
-            .opacity(pulseEffect)
+            .opacity(pulseEffectDurationInSecond)
             .onAppear{
                 withAnimation(.easeInOut(duration: 0.5).repeatForever(autoreverses: true)) {
-                    pulseEffect = 0.3
+                    pulseEffectDurationInSecond = 0.3
                 }
             }.presentationDetents([.medium])
             Text("Swipe down to close").padding(.top, 10)
