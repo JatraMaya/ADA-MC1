@@ -17,4 +17,36 @@ class UserDefaultValues: ObservableObject {
     @AppStorage("result") var result: Double = 0.0
     @AppStorage("intervalChoosed") var timerIntervalChoosed: Int = 30
     @AppStorage("setupIsDone") var setupIsDone: Bool = false
+
+    func updateUsername(withValue name: String) {
+        self.username = name
+    }
+
+    func updatecurrentWaterLevel(withValue value: Double) {
+        self.currentWaterLevel = value
+    }
+
+    func updateWaterIntakeTarget(withValue value: Int) {
+        self.waterIntakeTarget = value
+    }
+
+    func addUserWeight(withWeight weight: String) {
+        self.userWeight = weight
+    }
+
+    func updateVolumeWaterChoosed(withValue volumeWater: Int) {
+        self.volumeWaterChoosed = volumeWater
+    }
+
+    func updateResult(withValue result: Double) {
+        self.result = result
+    }
+
+    func updateTimeInterval(withTime time: Int) {
+        self.timerIntervalChoosed = time
+    }
+
+    func changeSetupStatus(withStatus status: Bool) {
+        self.setupIsDone = status
+    }
 }
