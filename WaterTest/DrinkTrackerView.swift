@@ -57,8 +57,8 @@ struct DrinkTrackerView: View {
                 }
                 .alert(isPresented: $isCongartulateMessageShowed) {
                     Alert(title: Text("Congratulation \(userDefaultValues.username)!"), message: Text("You've completed today's water intake target. Let's try to achieve the same result for tomorrow"), dismissButton: .default(Text("Done"), action: {
-                        userDefaultValues.waterIntakeTarget = 0
-                        userDefaultValues.currentWaterLevel = 0.0
+                        userDefaultValues.updateWaterIntakeTarget(withValue: 0)
+                        userDefaultValues.updatecurrentWaterLevel(withValue: 0.0)
                         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
                     }))
                 }
@@ -71,8 +71,8 @@ struct DrinkTrackerView: View {
                 }
                 .alert(isPresented: $isFailedMessageShowed) {
                     Alert(title: Text("Too bad"), message: Text("You failed to achieve your target today, fortunately there is always tomorrow"), dismissButton: .default(Text("Done"), action: {
-                        userDefaultValues.waterIntakeTarget = 0
-                        userDefaultValues.currentWaterLevel = 0.0
+                        userDefaultValues.updateWaterIntakeTarget(withValue: 0)
+                        userDefaultValues.updatecurrentWaterLevel(withValue: 0.0)
                         notificationStartTime = Date.now
                         timeTrackerStartTime = Date.now
                         NotificationSetup()
@@ -89,11 +89,11 @@ struct DrinkTrackerView: View {
         }
         .onAppear{
             // setup onboarding as done
-            userDefaultValues.setupIsDone = true
+            userDefaultValues.changeSetupStatus(withStatus: true)
             NotificationSetup()
         }
         .sheet(isPresented: $isSettingShowed, onDismiss: {
-            userDefaultValues.result =  calculateWaterNeeds(userWeight: userDefaultValues.userWeight)
+            userDefaultValues.updateResult(withValue: calculateWaterNeeds(userWeight: userDefaultValues.userWeight)) 
         },content: {
             SettingsFormView(userWeight: userDefaultValues.$userWeight, timerIntervalChoosed: userDefaultValues.$timerIntervalChoosed, volumeWaterChoosed: userDefaultValues.$volumeWaterChoosed)
                 .frame(height: 400)
