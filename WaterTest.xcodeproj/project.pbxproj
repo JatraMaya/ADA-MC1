@@ -65,7 +65,6 @@
 		BD1C095E2A88A57C00095587 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				BD1C095F2A88A58E00095587 /* UserDefaultValues.swift */,
 				BD8F62C82A8A0E410059A6AB /* PickerValues.swift */,
 			);
 			name = Models;
@@ -82,9 +81,7 @@
 		BD1C09652A88ABB200095587 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				BD1C09662A88ABDF00095587 /* OnBoardingFormView.swift */,
-				BD299C762A88C73C005C1756 /* SettingsFormView.swift */,
-				BD8F62C62A8A0C250059A6AB /* FormTimerAndWaterLevelView.swift */,
+				BD1C095F2A88A58E00095587 /* UserDefaultValues.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -92,6 +89,9 @@
 		BD299C702A88B754005C1756 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BD1C09662A88ABDF00095587 /* OnBoardingFormView.swift */,
+				BD299C762A88C73C005C1756 /* SettingsFormView.swift */,
+				BD8F62C62A8A0C250059A6AB /* FormTimerAndWaterLevelView.swift */,
 				BD989E3529E5318D00A9BFA2 /* DrinkTrackerView.swift */,
 				BD297D9D29E40D12008B9573 /* ChooseWaterLevelTimeView.swift */,
 				BDD9C00B29D8BB0000942501 /* WelcomeView.swift */,
